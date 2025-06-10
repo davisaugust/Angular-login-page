@@ -19,7 +19,7 @@ export class DefaultLoginLayout {
   }
 
   navigate(){
-    this.onNavigate.emit();
+    this.onNavigate.emit("/signup");
   }
 
 }

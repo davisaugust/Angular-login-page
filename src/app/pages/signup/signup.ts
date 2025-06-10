@@ -6,13 +6,15 @@ import { Router } from '@angular/router';
 import { LoginService } from '../../services/login-service';
 import { ToastrService } from 'ngx-toastr';
 
-interface LoginForm{
+interface SignupForm{
+  name: FormControl,
   email: FormControl,
-  password: FormControl
+  password: FormControl,
+  passwordConfirm: FormControl
 }
 
 @Component({
-  selector: 'app-login',
+  selector: 'app-signup',
   imports: [
     DefaultLoginLayout,
     ReactiveFormsModule,
@@ -21,33 +23,34 @@ interface LoginForm{
   providers: [
     LoginService
   ],
-  templateUrl: './login.html',
-  styleUrl: './login.scss'
+  templateUrl: './signup.html',
+  styleUrl: './signup.scss'
 })
-export class Login {
+export class SignupComponent {
 
-  loginForm!: FormGroup<LoginForm>;
-  toastService: any;
+  signupForm!: FormGroup<SignupForm>;
 
   constructor(
     private router: Router,
     private loginService: LoginService,
     private toastr: ToastrService
   ){
-    this.loginForm = new FormGroup({
-      email: new FormControl('', [Validators.required]),
-      password: new FormControl('', [Validators.required, Validators.minLength(6)])
+    this.signupForm = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(3)]),
+      email: new FormControl('', [Validators.required, Validators.email]),
+      password: new FormControl('', [Validators.required, Validators.minLength(6)]),
+      passwordConfirm: new FormControl('', [Validators.required, Validators.minLength(6)])
     })
   }
 
   submit(){
-    this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
+    this.loginService.login(this.signupForm.value.email, this.signupForm.value.password).subscribe({
       next: () => this.toastr.success("Parabéns!"),
       error: () => this.toastr.success("Erro!")
     });
   }
 
   navigate(){
-    this.router.navigate(["/signup"]);
+    this.router.navigate(["/login"]);
   }
 }
