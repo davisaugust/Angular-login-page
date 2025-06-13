@@ -40,7 +40,7 @@ export class PrimaryInput implements ControlValueAccessor{
   }
 
   registerOnTouched(fn: any): void {
-      throw new Error('Method not implemented');
+      this.onTouched = fn;
   }
 
   setDisabledState(isDisabled: boolean): void {
