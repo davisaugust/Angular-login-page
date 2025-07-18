@@ -1,5 +1,7 @@
 # LoginPage
 
+## To get the correct route for the site, you need to change the url to "https://localhost:4200/login".
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.0.1.
 
 ## Development server
