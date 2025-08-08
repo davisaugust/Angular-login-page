@@ -42,8 +42,11 @@ export class Login {
 
   submit(){
     this.loginService.login(this.loginForm.value.email, this.loginForm.value.password).subscribe({
-      next: () => this.toastr.success("Parabéns!"),
-      error: () => this.toastr.success("Erro!")
+      next: () => {
+        this.toastr.success("Parabéns!");
+        this.router.navigate(["/user"]);
+      },
+      error: () => this.toastr.error("Usuário ou senha não encontrado!")
     });
   }
 

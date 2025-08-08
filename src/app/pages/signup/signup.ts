@@ -45,8 +45,8 @@ export class SignupComponent {
 
   submit(){
     this.loginService.signup(this.signupForm.value.name, this.signupForm.value.email, this.signupForm.value.password).subscribe({
-      next: () => this.toastr.success("Parabéns!"),
-      error: () => this.toastr.success("Erro!")
+      next: () => this.toastr.success("Cadastro efetuado com sucesso!"),
+      error: () => this.toastr.error("Algo de errado aconteceu ao se cadastrar. Verifique suas informações e tente novamente!")
     });
   }
 
